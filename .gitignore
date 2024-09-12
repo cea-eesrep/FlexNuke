@@ -3,3 +3,12 @@
 .vscode
 *.lp
 *.png
+__pycache__
+
+compute_K_factor/*
+!compute_K_factor/*.py
+!compute_K_factor/cpp_function.cpp
+!compute_K_factor/cython_credit_K_interprocessing.pyx
+!compute_K_factor/README.md
+!compute_K_factor/cpp_source_K_interprocessing.cpp
+!compute_K_factor/compile_cpp.sh
