@@ -23,7 +23,7 @@ cpdef credit_K_interprocessing_cython_typed(mode:str,
         else:
             past_past_step_creditELPO:float = new_creditK
 
-        if past_step_is_ELPO:
+        if past_step_is_ELPO == 1.:
             past_step_power:float = elec[past_step_index]
             past_step_fpd:float = fpd[past_step_index]
             past_step_burnup:float = (past_step_fpd * pmax / efficiency) / fuel_weight
@@ -49,7 +49,7 @@ cpdef credit_K_interprocessing_cython_typed(mode:str,
         else:
             past_step_PO:float = is_po[past_step_index]
 
-            if past_step_PO:
+            if past_step_PO == 1.:
                 if mode == "Base":
                     if past_past_step_creditELPO <= 100:
                         B_j:float = dict_B_j[mode]["0 to 100"][0] + dict_B_j[mode]["0 to 100"][1] * past_past_step_creditELPO

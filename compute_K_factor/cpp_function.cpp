@@ -36,7 +36,7 @@ std::vector<float> credit_K_interprocessing_cpp(std::string mode,
             past_past_step_creditELPO = new_creditK;
         }
 
-        if (past_step_is_ELPO != 0){
+        if (past_step_is_ELPO == 1){
             past_step_power = elec[past_step_index];
             past_step_fdf = fpd[past_step_index];
             past_step_burnup = (past_step_fdf * pmax / efficiency) / fuel_weight;
@@ -65,7 +65,7 @@ std::vector<float> credit_K_interprocessing_cpp(std::string mode,
         else{
             past_step_PO = is_po[past_step_index];
 
-            if (past_step_PO){
+            if (past_step_PO == 1){
                 if (mode == "Base"){
                     if (past_past_step_creditELPO <= 100)
                         B_j = dict_B_j[mode]["0 to 100"][0] + dict_B_j[mode]["0 to 100"][1] * past_past_step_creditELPO;

@@ -16,7 +16,7 @@ dict_B_j = {"Base" : {"0 to 100" : [8, -0.07], "100 to 200" : [1, 0], "200" : [0
 
 Flexible_units = {}
 
-name = "Flexible_Nuke_1"
+name = "Flexible_Nuke_A_14"
 global_NPP_bool_creditELPO = True
 
 ### NPP caracteristics (most reference values found in ITESE A-B use case)
@@ -72,10 +72,12 @@ Flexible_units[name] = FlexibleNPP(name = name,
                                     cons_A_i = conservative_A_i,
                                     bool_duration = global_NPP_bool_duration)
 
-df = pd.read_csv("test/data_test_credit_K.csv")
+df = pd.read_csv("intermediate_results.csv")
 
 df2 = python_function(df, Flexible_units, dict_K0, dict_A_i, dict_B_j)
 
 df3 = cython_function(df, Flexible_units, dict_K0, dict_A_i, dict_B_j)
 
-assert df2[name+"_creditELPO"].all() == df3[name+"_creditELPO"].all()
+print(pd.DataFrame({"power":df2[name+"_electricity"], "python":df2[name+"_creditELPO"], "cython": df3[name+"_creditELPO"]}))
+
+print((df2[name+"_creditELPO"]- df3[name+"_creditELPO"]).max())

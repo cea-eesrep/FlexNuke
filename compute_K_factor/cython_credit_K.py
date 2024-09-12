@@ -37,7 +37,18 @@ def credit_K_interprocessing(results:pd.DataFrame,
         efficiency = flexible_units[flexible_unit].efficiency
         fuel_weight = flexible_units[flexible_unit].fuel_weight
 
-        new_results[name+"_creditELPO"] = credit_K_interprocessing_cython_typed(mode, p_max, efficiency, fuel_weight, list(new_results[name+"_creditELPO"]), list(new_results[name+"_is_step_ELPO"]), list(new_results[name+"_PO"]), list(new_results[name+"_electricity"]), list(new_results[name+"_fpd"]), dict_K0, dict_A_i, dict_B_j)
+        new_results[name+"_creditELPO"] = credit_K_interprocessing_cython_typed(mode, 
+                                                                                p_max, 
+                                                                                efficiency, 
+                                                                                fuel_weight, 
+                                                                                list(new_results[name+"_creditELPO"]), 
+                                                                                list(new_results[name+"_is_step_ELPO"]), 
+                                                                                list(new_results[name+"_PO"]), 
+                                                                                list(new_results[name+"_electricity"]), 
+                                                                                list(new_results[name+"_fpd"]), 
+                                                                                dict_K0, 
+                                                                                dict_A_i, 
+                                                                                dict_B_j)
     # end for units
 
     return new_results
